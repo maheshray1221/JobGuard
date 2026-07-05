@@ -17,3 +17,5 @@ export const registerSchema = z.object({
     .min(5, "Password must be atleast 5 characters")
     .max(20, "Password must be no more then 20 characters"),
 });
+
+export type RegisterInput = z.infer<typeof registerSchema>;

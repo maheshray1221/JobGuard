@@ -1,7 +1,8 @@
 import mongoose, { Schema, Document, Model, Types } from "mongoose";
 
 interface IAnalysis extends Document {
-  inputType: string;
+  input: string;
+  inputType: "paste" | "url";
   jobDescription: string;
   sourceUrl: string;
   riskScore: number;
@@ -15,6 +16,11 @@ const analysisSchema = new Schema<IAnalysis>(
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+      required: true,
+    },
+
+    input: {
+      type: String,
       required: true,
     },
 
@@ -60,7 +66,7 @@ const analysisSchema = new Schema<IAnalysis>(
   { timestamps: true },
 );
 
-const Analysis: Model<IAnalysis> = mongoose.model<IAnalysis>(
+export const Analysis: Model<IAnalysis> = mongoose.model<IAnalysis>(
   "Analysis",
   analysisSchema,
 );

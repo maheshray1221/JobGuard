@@ -2,7 +2,7 @@ import mongoose, { Document, Schema, Model } from "mongoose";
 import bcrypt from "bcrypt";
 import jwt, { SignOptions, Secret } from "jsonwebtoken";
 
-interface IUser extends Document {
+export interface IUser extends Document {
   username: string;
   email: string;
   password: string;
@@ -31,7 +31,6 @@ const userSchema = new Schema<IUser>(
     password: {
       type: String,
       required: true,
-      unique: true,
     },
     refreshToken: {
       type: String,
@@ -80,7 +79,8 @@ userSchema.methods.generateRefreshToken = function (): string {
     secret as Secret,
 
     {
-      expiresIn: process.env.REFRESH_TOKEN_EXPIRY as SignOptions["expiresIn"],
+      expiresIn: (process.env.REFRESH_TOKEN_EXPIRY ??
+        "7d") as SignOptions["expiresIn"],
     },
   );
 };
