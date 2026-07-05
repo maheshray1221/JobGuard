@@ -1,29 +1,25 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   ClipboardPaste,
-  History,
   Link2,
   LoaderCircle,
-  LogOut,
-  ShieldCheck,
   Sparkles,
 } from "lucide-react";
 import { toast } from "sonner";
+import { DashboardHeader } from "./dashboard-header";
 import { RiskResultCard, type AnalysisResult } from "./risk-result-card";
 import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern";
 import { Badge } from "@/components/ui/badge";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { MagicCard } from "@/components/ui/magic-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Textarea } from "@/components/ui/textarea";
 import { ApiClientError, apiFetch } from "@/lib/api";
-import { cn } from "@/lib/utils";
 
 interface User {
   _id: string;
@@ -94,15 +90,6 @@ export function AnalysisDashboard() {
     }
   };
 
-  const handleLogout = async () => {
-    try {
-      await apiFetch("/api/auth/logout", { method: "POST" });
-    } finally {
-      router.replace("/login");
-      router.refresh();
-    }
-  };
-
   if (checkingSession) {
     return <DashboardSkeleton />;
   }
@@ -116,41 +103,7 @@ export function AnalysisDashboard() {
       />
       <div className="pointer-events-none absolute left-1/2 top-[-18rem] size-[34rem] -translate-x-1/2 rounded-full bg-emerald-300/20 blur-3xl" />
 
-      <header className="relative z-20 border-b border-slate-200/70 bg-white/75 backdrop-blur-xl">
-        <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link
-            href="/dashboard"
-            className="flex items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
-          >
-            <span className="grid size-9 place-items-center rounded-xl bg-emerald-600 text-white">
-              <ShieldCheck className="size-5" aria-hidden="true" />
-            </span>
-            <span className="font-bold tracking-tight">JobGuard</span>
-          </Link>
-
-          <nav className="flex items-center gap-1 sm:gap-2" aria-label="Account">
-            <Link
-              href="/history"
-              className={cn(
-                buttonVariants({ variant: "ghost" }),
-                "rounded-full px-3 sm:px-4",
-              )}
-            >
-              <History aria-hidden="true" />
-              <span className="hidden sm:inline">History</span>
-            </Link>
-            <Button
-              type="button"
-              variant="ghost"
-              onClick={handleLogout}
-              className="rounded-full px-3 text-slate-600 sm:px-4"
-            >
-              <LogOut aria-hidden="true" />
-              <span className="hidden sm:inline">Sign out</span>
-            </Button>
-          </nav>
-        </div>
-      </header>
+      <DashboardHeader active="dashboard" />
 
       <section className="relative z-10 mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
         <motion.div
