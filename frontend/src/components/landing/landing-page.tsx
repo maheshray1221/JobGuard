@@ -15,6 +15,7 @@ import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { MagicCard } from "@/components/ui/magic-card";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 
 const features = [
@@ -52,7 +53,7 @@ export function LandingPage() {
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#f7fbf9] text-slate-950">
+    <main className="relative min-h-screen overflow-hidden bg-[#f7fbf9] text-slate-950 transition-colors dark:bg-slate-950 dark:text-slate-50">
       <AnimatedGridPattern
         numSquares={28}
         maxOpacity={0.12}
@@ -77,6 +78,7 @@ export function LandingPage() {
         </Link>
 
         <nav className="flex items-center gap-2" aria-label="Primary navigation">
+          <ThemeToggle />
           <Link
             href="/login"
             className={cn(
@@ -124,7 +126,7 @@ export function LandingPage() {
           <motion.p
             {...reveal}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="mx-auto mt-6 max-w-xl text-pretty text-base leading-7 text-slate-600 sm:text-lg sm:leading-8 lg:mx-0"
+            className="mx-auto mt-6 max-w-xl text-pretty text-base leading-7 text-slate-600 dark:text-slate-300 sm:text-lg sm:leading-8 lg:mx-0"
           >
             JobGuard scans job descriptions for scam patterns and explains what
             looks suspicious, so you can make a safer, more confident decision.
@@ -222,7 +224,7 @@ export function LandingPage() {
 
       <section
         id="how-it-works"
-        className="relative z-10 border-y border-slate-200/70 bg-white/70 py-16 backdrop-blur sm:py-20"
+        className="relative z-10 border-y border-slate-200/70 bg-white/70 py-16 backdrop-blur dark:border-white/10 dark:bg-slate-900/70 sm:py-20"
       >
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
@@ -243,7 +245,7 @@ export function LandingPage() {
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.4, delay: index * 0.08 }}
               >
-                <MagicCard className="h-full rounded-3xl bg-white">
+                <MagicCard className="h-full rounded-3xl bg-white dark:bg-slate-900">
                   <div className="h-full p-6 sm:p-7">
                     <span className="grid size-11 place-items-center rounded-2xl bg-emerald-100 text-emerald-700">
                       <feature.icon className="size-5" aria-hidden="true" />
@@ -251,7 +253,7 @@ export function LandingPage() {
                     <h3 className="mt-5 text-lg font-semibold">
                       {feature.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                    <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
                       {feature.description}
                     </p>
                   </div>
@@ -260,7 +262,7 @@ export function LandingPage() {
             ))}
           </div>
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 text-sm text-slate-600 sm:flex-row sm:flex-wrap sm:gap-x-7">
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 text-sm text-slate-600 dark:text-slate-300 sm:flex-row sm:flex-wrap sm:gap-x-7">
             {trustPoints.map((point) => (
               <span key={point} className="flex items-center gap-2">
                 <CheckCircle2

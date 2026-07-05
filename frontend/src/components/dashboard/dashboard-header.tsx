@@ -6,6 +6,7 @@ import { History, LayoutDashboard, LogOut, ShieldCheck } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { apiFetch } from "@/lib/api";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export function DashboardHeader({
   active,
@@ -24,7 +25,7 @@ export function DashboardHeader({
   };
 
   return (
-    <header className="relative z-20 border-b border-slate-200/70 bg-white/75 backdrop-blur-xl">
+    <header className="relative z-20 border-b border-slate-200/70 bg-white/75 backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/80">
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link
           href="/dashboard"
@@ -37,6 +38,7 @@ export function DashboardHeader({
         </Link>
 
         <nav className="flex items-center gap-1 sm:gap-2" aria-label="Account">
+          <ThemeToggle />
           <Link
             href="/dashboard"
             aria-current={active === "dashboard" ? "page" : undefined}

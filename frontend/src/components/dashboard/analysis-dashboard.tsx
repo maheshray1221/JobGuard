@@ -95,7 +95,7 @@ export function AnalysisDashboard() {
   }
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#f7fbf9] text-slate-950">
+    <main className="relative min-h-screen overflow-hidden bg-[#f7fbf9] text-slate-950 transition-colors dark:bg-slate-950 dark:text-slate-50">
       <AnimatedGridPattern
         numSquares={24}
         maxOpacity={0.08}
@@ -119,7 +119,7 @@ export function AnalysisDashboard() {
           <h1 className="mt-5 text-balance text-3xl font-bold tracking-[-0.035em] sm:text-5xl">
             Is this job opportunity safe?
           </h1>
-          <p className="mx-auto mt-4 max-w-xl text-pretty leading-7 text-slate-600">
+          <p className="mx-auto mt-4 max-w-xl text-pretty leading-7 text-slate-600 dark:text-slate-300">
             Paste the complete description or a public URL. JobGuard will look
             for fraud patterns and explain the result.
           </p>
@@ -136,7 +136,7 @@ export function AnalysisDashboard() {
             glowFrom="#10b981"
             glowTo="#22d3ee"
             glowOpacity={0.15}
-            className="rounded-[2rem] bg-white/85 shadow-2xl shadow-emerald-950/10 backdrop-blur-xl"
+            className="rounded-[2rem] bg-white/85 shadow-2xl shadow-emerald-950/10 backdrop-blur-xl dark:bg-slate-900/90"
           >
             <form className="p-5 sm:p-7" onSubmit={handleAnalyze}>
               <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
@@ -161,7 +161,7 @@ export function AnalysisDashboard() {
                   if (error) setError("");
                 }}
                 placeholder="Paste a complete job description or public listing URL..."
-                className="min-h-44 resize-y rounded-2xl border-slate-200 bg-white p-4 text-base leading-7 shadow-inner focus-visible:ring-emerald-600 sm:min-h-52"
+                className="min-h-44 resize-y rounded-2xl border-slate-200 bg-white p-4 text-base leading-7 shadow-inner focus-visible:ring-emerald-600 dark:border-white/10 dark:bg-slate-950 sm:min-h-52"
                 aria-describedby={error ? "analysis-error" : "input-help"}
                 aria-invalid={Boolean(error)}
                 disabled={analyzing}
@@ -209,7 +209,7 @@ export function AnalysisDashboard() {
 
 function DashboardSkeleton() {
   return (
-    <main className="min-h-screen bg-[#f7fbf9]">
+    <main className="min-h-screen bg-[#f7fbf9] dark:bg-slate-950">
       <div className="border-b bg-white/80">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
           <Skeleton className="h-9 w-32 rounded-xl" />

@@ -67,7 +67,7 @@ export function LoginForm() {
           id="identity"
           autoComplete="username"
           placeholder="you@example.com"
-          className="h-11 bg-white"
+          className="h-11 bg-white dark:bg-slate-950"
           aria-invalid={Boolean(errors.identity)}
           {...register("identity")}
         />
@@ -112,7 +112,7 @@ export function LoginForm() {
         {isSubmitting ? "Signing in..." : "Sign in"}
       </Button>
 
-      <p className="text-center text-sm text-slate-600">
+      <p className="text-center text-sm text-slate-600 dark:text-slate-300">
         New to JobGuard?{" "}
         <Link
           href="/register"

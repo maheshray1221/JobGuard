@@ -6,6 +6,7 @@ import { ArrowLeft, ShieldCheck, Sparkles } from "lucide-react";
 import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern";
 import { Badge } from "@/components/ui/badge";
 import { MagicCard } from "@/components/ui/magic-card";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 interface AuthShellProps {
   eyebrow: string;
@@ -23,7 +24,7 @@ export function AuthShell({
   const reduceMotion = useReducedMotion();
 
   return (
-    <main className="relative grid min-h-screen overflow-hidden bg-[#f7fbf9] lg:grid-cols-[0.9fr_1.1fr]">
+    <main className="relative grid min-h-screen overflow-hidden bg-[#f7fbf9] text-slate-950 transition-colors dark:bg-slate-950 dark:text-slate-50 lg:grid-cols-[0.9fr_1.1fr]">
       <AnimatedGridPattern
         numSquares={24}
         maxOpacity={0.1}
@@ -67,6 +68,7 @@ export function AuthShell({
       </section>
 
       <section className="relative z-10 flex min-h-screen items-center justify-center px-4 py-8 sm:px-6 lg:px-10">
+        <ThemeToggle className="absolute right-4 top-4 sm:right-6 sm:top-6" />
         <div className="w-full max-w-md">
           <Link
             href="/"
@@ -85,7 +87,7 @@ export function AuthShell({
               gradientFrom="#10b981"
               gradientTo="#22d3ee"
               gradientOpacity={0.08}
-              className="rounded-[2rem] bg-white/85 shadow-2xl shadow-emerald-950/10 backdrop-blur-xl"
+              className="rounded-[2rem] bg-white/85 shadow-2xl shadow-emerald-950/10 backdrop-blur-xl dark:bg-slate-900/90"
             >
               <div className="p-6 sm:p-8">
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-700">
@@ -94,7 +96,7 @@ export function AuthShell({
                 <h1 className="mt-2 text-3xl font-bold tracking-tight">
                   {title}
                 </h1>
-                <p className="mt-2 text-sm leading-6 text-slate-600">
+                <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
                   {description}
                 </p>
                 <div className="mt-7">{children}</div>

@@ -64,7 +64,7 @@ export function RiskResultCard({ result }: { result: AnalysisResult }) {
         gradientFrom={config.ring}
         gradientTo="#22d3ee"
         gradientOpacity={0.06}
-        className="rounded-[2rem] bg-white shadow-xl shadow-slate-950/5"
+        className="rounded-[2rem] bg-white shadow-xl shadow-slate-950/5 dark:bg-slate-900"
       >
         <div className="p-5 sm:p-7">
           <div className="flex flex-col gap-5 border-b border-slate-100 pb-6 sm:flex-row sm:items-center sm:justify-between">
@@ -162,7 +162,9 @@ function FlagGroup({
 
   return (
     <div>
-      <h3 className="text-sm font-semibold text-slate-900">{title}</h3>
+      <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+        {title}
+      </h3>
       <ul className="mt-2 space-y-2">
         {(flags.length ? flags : [emptyText]).map((flag) => (
           <li key={flag} className="flex items-start gap-2 text-sm leading-5">
@@ -173,7 +175,7 @@ function FlagGroup({
               )}
               aria-hidden="true"
             />
-            <span className="text-slate-600">{flag}</span>
+            <span className="text-slate-600 dark:text-slate-300">{flag}</span>
           </li>
         ))}
       </ul>

@@ -112,7 +112,7 @@ export function HistoryPage() {
   );
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#f7fbf9]">
+    <main className="relative min-h-screen overflow-hidden bg-[#f7fbf9] text-slate-950 transition-colors dark:bg-slate-950 dark:text-slate-50">
       <AnimatedGridPattern
         numSquares={20}
         maxOpacity={0.07}
@@ -232,7 +232,7 @@ function HistoryCard({ record }: { record: HistoryRecord }) {
           }
           gradientTo="#22d3ee"
           gradientOpacity={0.05}
-          className="h-full rounded-3xl bg-white shadow-sm transition-shadow group-hover:shadow-xl"
+        className="h-full rounded-3xl bg-white shadow-sm transition-shadow group-hover:shadow-xl dark:bg-slate-900"
         >
           <div className="p-5 sm:p-6">
             <div className="flex items-start justify-between gap-4">
@@ -244,7 +244,7 @@ function HistoryCard({ record }: { record: HistoryRecord }) {
               </Badge>
             </div>
 
-            <p className="mt-5 line-clamp-2 min-h-12 text-sm font-medium leading-6 text-slate-800">
+            <p className="mt-5 line-clamp-2 min-h-12 text-sm font-medium leading-6 text-slate-800 dark:text-slate-200">
               {record.input}
             </p>
 
@@ -300,7 +300,7 @@ function StateCard({
   description: string;
 }) {
   return (
-    <div className="mt-8 rounded-3xl border border-dashed border-slate-300 bg-white/70 px-6 py-16 text-center">
+    <div className="mt-8 rounded-3xl border border-dashed border-slate-300 bg-white/70 px-6 py-16 text-center dark:border-white/15 dark:bg-slate-900/70">
       <span className="mx-auto grid size-12 place-items-center rounded-2xl bg-slate-100 text-slate-500">
         <Icon className="size-6" aria-hidden="true" />
       </span>

@@ -93,7 +93,7 @@ export function RegisterForm() {
           id="username"
           autoComplete="username"
           placeholder="your_name"
-          className="h-11 bg-white"
+          className="h-11 bg-white dark:bg-slate-950"
           aria-invalid={Boolean(errors.username)}
           {...register("username")}
         />
@@ -109,7 +109,7 @@ export function RegisterForm() {
           type="email"
           autoComplete="email"
           placeholder="you@example.com"
-          className="h-11 bg-white"
+          className="h-11 bg-white dark:bg-slate-950"
           aria-invalid={Boolean(errors.email)}
           {...register("email")}
         />
@@ -172,7 +172,7 @@ export function RegisterForm() {
         {isSubmitting ? "Creating account..." : "Create account"}
       </Button>
 
-      <p className="text-center text-sm text-slate-600">
+      <p className="text-center text-sm text-slate-600 dark:text-slate-300">
         Already have an account?{" "}
         <Link
           href="/login"

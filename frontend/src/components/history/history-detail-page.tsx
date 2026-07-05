@@ -64,7 +64,7 @@ export function HistoryDetailPage({
   }, [analysisId, router]);
 
   return (
-    <main className="min-h-screen bg-[#f7fbf9]">
+    <main className="min-h-screen bg-[#f7fbf9] text-slate-950 transition-colors dark:bg-slate-950 dark:text-slate-50">
       <DashboardHeader active="history" />
       <section className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         <Link
@@ -112,7 +112,7 @@ export function HistoryDetailPage({
               </p>
             </div>
 
-            <div className="mt-6 rounded-3xl border border-slate-200 bg-white p-5 sm:p-6">
+            <div className="mt-6 rounded-3xl border border-slate-200 bg-white p-5 dark:border-white/10 dark:bg-slate-900 sm:p-6">
               <div className="flex items-center justify-between gap-3">
                 <h2 className="font-semibold">Submitted listing</h2>
                 {record.sourceUrl && (
