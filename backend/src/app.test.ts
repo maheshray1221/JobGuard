@@ -3,6 +3,17 @@ import { describe, expect, it } from "vitest";
 import { app } from "./app.js";
 
 describe("API security behavior", () => {
+  it("reports API health without authentication", async () => {
+    const response = await request(app).get("/api/health");
+
+    expect(response.status).toBe(200);
+    expect(response.body).toMatchObject({
+      success: true,
+      data: { status: "ok" },
+      msg: "JobGuard API is healthy",
+    });
+  });
+
   it("returns a JSON 401 for a protected endpoint", async () => {
     const response = await request(app).get("/api/auth/me");
 

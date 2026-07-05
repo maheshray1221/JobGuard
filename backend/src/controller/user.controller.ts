@@ -69,8 +69,10 @@ const loginUser = asyncHandler(
     req: Request<{}, {}, LoginInput>,
     res: Response,
   ): Promise<void> => {
-    const { username, password } = req.body;
-    const loggedIn = await User.findOne({ username });
+    const { username, email, password } = req.body;
+    const loggedIn = await User.findOne(
+      email ? { email } : { username },
+    );
 
     if (!loggedIn || !(await loggedIn.isPasswordCorrect(password))) {
       throw new ApiError(401, "Invalid username or password");

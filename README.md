@@ -56,6 +56,8 @@ npm start         # Run the compiled API
 
 The default API address is `http://localhost:7000`.
 
+Deployment platforms can check `GET /api/health` to verify that the API process is running.
+
 ## API
 
 ### Authentication
@@ -63,7 +65,7 @@ The default API address is `http://localhost:7000`.
 | Method | Route | Authentication | Purpose |
 |---|---|---|---|
 | POST | `/api/auth/register` | No | Create an account |
-| POST | `/api/auth/login` | No | Set access and refresh cookies |
+| POST | `/api/auth/login` | No | Sign in with username or email and set cookies |
 | POST | `/api/auth/refresh-token` | Refresh cookie | Rotate session tokens |
 | POST | `/api/auth/logout` | Access token | Clear tokens and end the session |
 | GET | `/api/auth/me` | Access token | Return the current user |
@@ -81,7 +83,7 @@ Login and store cookies:
 ```bash
 curl -c cookies.txt -X POST http://localhost:7000/api/auth/login \
   -H "Content-Type: application/json" \
-  -d '{"username":"demo_user","password":"secure123"}'
+  -d '{"email":"demo@example.com","password":"secure123"}'
 ```
 
 ### Analysis

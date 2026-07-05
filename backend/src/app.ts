@@ -24,6 +24,17 @@ app.use(cookieParser());
 import AnalysisRouter from "./routes/analysis.route.js";
 import AuthRouter from "./routes/auth.route.js";
 
+app.get("/api/health", (_: Request, res: Response): void => {
+  res.status(200).json({
+    success: true,
+    data: {
+      status: "ok",
+      uptimeSeconds: Math.floor(process.uptime()),
+    },
+    msg: "JobGuard API is healthy",
+  });
+});
+
 app.use("/api/analysis", AnalysisRouter);
 app.use("/api/auth", AuthRouter);
 
