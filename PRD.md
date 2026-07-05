@@ -57,7 +57,7 @@ Status values reflect `JobGuard_Status.pdf`, not repository verification.
 | Deployment | MongoDB Atlas | Completed | Cloud database reported as connected |
 | Deployment | Render backend | Pending | Deploy after API readiness |
 | Deployment | Vercel frontend | Pending | Deploy after frontend readiness |
-| Documentation | README | Pending | Setup, environment variables, screenshots, and live links |
+| Documentation | README | Completed | Setup, environment variables, API usage, and deployment guidance |
 
 ### Repository verification note
 
