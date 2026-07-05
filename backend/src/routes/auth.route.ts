@@ -4,6 +4,7 @@ import {
   loginUser,
   logoutUser,
   getCurrentUser,
+  refreshAccessToken,
 } from "../controller/user.controller.js";
 import { validateBody } from "../middleware/validate.middleware.js";
 import { verifyJWT } from "../middleware/auth.middleware.js";
@@ -21,6 +22,7 @@ router.post(
 );
 router.post("/login", authRateLimit, validateBody(loginSchema), loginUser);
 router.post("/logout", verifyJWT, logoutUser);
+router.post("/refresh-token", authRateLimit, refreshAccessToken);
 router.get("/me", verifyJWT, getCurrentUser);
 
 export default router;

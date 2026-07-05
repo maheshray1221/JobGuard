@@ -132,6 +132,7 @@ All protected routes use the authenticated user derived from the JWT cookie.
 | POST | `/api/auth/register` | Create an account | Completed |
 | POST | `/api/auth/login` | Start an authenticated session | Completed |
 | POST | `/api/auth/logout` | Clear the authenticated session | Completed |
+| POST | `/api/auth/refresh-token` | Rotate tokens and renew the session | Completed |
 | GET | `/api/auth/me` | Return the current user | Completed |
 | POST | `/api/analysis/analyze` | Analyze pasted text or a URL | Completed |
 | GET | `/api/analysis/history` | List the user's analyses | Completed |
