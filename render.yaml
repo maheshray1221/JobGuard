@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: jobguard-api
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: ACCESS_TOKEN_SECRET
+        sync: false
+      - key: ACCESS_TOKEN_EXPIRY
+        value: 30m
+      - key: REFRESH_TOKEN_SECRET
+        sync: false
+      - key: REFRESH_TOKEN_EXPIRY
+        value: 7d
+      - key: CORS_ORIGIN
+        sync: false

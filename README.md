@@ -152,11 +152,20 @@ Tests cover input detection and validation, protected routes, refresh-token rota
 
 ## Deployment Notes
 
-- Use MongoDB Atlas for production data.
-- Deploy the backend to Render with all environment variables configured.
-- Set `NODE_ENV=production` so cookies use secure cross-site settings.
-- Set `CORS_ORIGIN` to the Vercel frontend URL without a trailing slash.
-- Confirm cookies, refresh, analysis, history, and logout from the deployed frontend before release.
+### Render backend
+
+1. In Render, create a Blueprint from this repository. Render reads `render.yaml` and uses `backend/` as the service root.
+2. Enter the secret values marked `sync: false`: `MONGO_URI`, `GROQ_API_KEY`, `ACCESS_TOKEN_SECRET`, `REFRESH_TOKEN_SECRET`, and `CORS_ORIGIN`.
+3. Set `CORS_ORIGIN` to the exact Vercel production URL without a trailing slash. Multiple exact origins can be comma-separated.
+4. Confirm that Render reports `/api/health` as healthy.
+
+### Vercel frontend
+
+1. Import this repository into Vercel and set **Root Directory** to `frontend`.
+2. Add `NEXT_PUBLIC_API_URL` with the Render service URL, without a trailing slash.
+3. Deploy after the backend URL is available, then update Render's `CORS_ORIGIN` with the final Vercel URL.
+
+Production cookies use `Secure`, `HttpOnly`, and `SameSite=None`. Confirm registration, login, refresh, analysis, history, and logout on the live domains before release.
 
 ## Contributing
 
