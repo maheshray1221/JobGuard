@@ -32,7 +32,7 @@ Formal product metrics and advanced observability are useful after deployment bu
 
 ## 4. Project Status
 
-Status values reflect `JobGuard_Status.pdf`, not repository verification.
+Status values started from `JobGuard_Status.pdf` and have been updated with repository and production verification.
 
 | Area | Requirement | Status | Notes |
 |---|---|---|---|
@@ -49,19 +49,19 @@ Status values reflect `JobGuard_Status.pdf`, not repository verification.
 | Backend | History list | Completed | `GET /api/analysis/history`, newest first and scoped to the user |
 | Backend | History detail | Completed | `GET /api/analysis/history/:id`, scoped to the user |
 | Backend | Rate limiting | Completed | Applied to analysis, login, and registration routes |
-| Frontend | Next.js 15 application | Pending | TypeScript and Tailwind CSS |
-| Frontend | Authentication pages | Pending | Login and registration forms |
-| Frontend | Analysis and result experience | Pending | Input, loading state, score, verdict, and flags |
-| Frontend | History experience | Pending | Past analyses with date, score, verdict, and input type |
-| Frontend | Navigation, errors, responsiveness | Pending | Navbar, logout, messages, and mobile layouts |
+| Frontend | Next.js 15 application | Completed | TypeScript, Tailwind CSS, Framer Motion, Magic UI-style components, and shadcn/ui tooling |
+| Frontend | Authentication pages | Completed | Login and registration forms with validation and API errors |
+| Frontend | Analysis and result experience | Completed | Input, loading state, score, verdict, flags, and guidance |
+| Frontend | History experience | Completed | Past analyses with date, score, verdict, and input type |
+| Frontend | Navigation, errors, responsiveness | Completed | Navbar, logout, messages, and responsive layouts |
 | Deployment | MongoDB Atlas | Completed | Cloud database reported as connected |
-| Deployment | Render backend | Pending | Deploy after API readiness |
-| Deployment | Vercel frontend | Pending | Deploy after frontend readiness |
-| Documentation | README | Completed | Setup, environment variables, API usage, and deployment guidance |
+| Deployment | Render backend | Completed | Live API at `https://jobguard-api-knnw.onrender.com` |
+| Deployment | Vercel frontend | Completed | Live app at `https://job-guard-sigma.vercel.app` |
+| Documentation | README | Completed | Setup, environment variables, API usage, deployment guidance, verification notes, and live links |
 
 ### Repository verification note
 
-The PDF remains the baseline project tracker. The local repository now verifies logout, `getMe`, analysis validation, the intended endpoint paths, environment-based Groq configuration, user-scoped history routes, rate limiting, and private-network URL blocking. Runtime behavior still requires integration tests with MongoDB and Groq credentials.
+The PDF remains the baseline project tracker for the original backend status. The local repository and production checks now verify logout, `getMe`, analysis validation, the intended endpoint paths, environment-based Groq configuration, user-scoped history routes, rate limiting, private-network URL blocking, deployed frontend routing, Render health, Vercel availability, and production CORS.
 
 ## 5. Core User Journey
 
@@ -164,7 +164,7 @@ Automated tests must cover:
 - Authentication and analysis rate limits.
 - Frontend loading, errors, result rendering, protected navigation, and responsive layouts.
 
-The backend must pass `npm run build`, and the deployed frontend must complete the full journey against the deployed API.
+The backend and frontend must pass `npm run build`, and the deployed frontend must complete the full journey against the deployed API.
 
 ## 10. Deployment and Documentation
 
@@ -173,6 +173,11 @@ The backend must pass `npm run build`, and the deployed frontend must complete t
 - Deploy the Next.js frontend to Vercel with the backend base URL configured by environment.
 - Verify registration, authentication cookies, analysis, history, and logout in production.
 - Add a README containing setup commands, required environment-variable names, architecture, API paths, screenshots, and live links.
+
+Current live URLs:
+
+- Frontend: `https://job-guard-sigma.vercel.app`
+- Backend health: `https://jobguard-api-knnw.onrender.com/api/health`
 
 ## 11. Priority and Scope Decisions
 

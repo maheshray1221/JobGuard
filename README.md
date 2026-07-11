@@ -1,29 +1,43 @@
 # JobGuard
 
-JobGuard is an AI-assisted job-fraud screening API. Authenticated users can submit a pasted job description or public job-posting URL and receive a risk score, verdict, red flags, and positive trust signals. Results are saved to the user's history.
+JobGuard is an AI-assisted job-fraud screening web app. Authenticated users can submit a pasted job description or public job-posting URL and receive a risk score, verdict, red flags, and positive trust signals. Results are saved to the user's history.
 
 > JobGuard provides decision support only. It does not guarantee that a job listing, company, or recruiter is legitimate.
 
 ## Current Status
 
-The TypeScript/Express backend is implemented. The Next.js frontend and production deployment are the next major milestones. See [PRD.md](./PRD.md) for the complete product scope.
+The MVP is implemented and deployed. The backend is live on Render, the frontend is live on Vercel, and production smoke testing has verified registration, login, current-user lookup, logout, CORS, and API health. See [PRD.md](./PRD.md) for the complete product scope.
+
+- Frontend: <https://job-guard-sigma.vercel.app>
+- Backend health: <https://jobguard-api-knnw.onrender.com/api/health>
 
 ## Technology
 
 - Node.js, Express 5, and TypeScript
+- Next.js 15, React 19, TypeScript, and Tailwind CSS
+- Framer Motion, Magic UI-style motion components, and shadcn/ui tooling
 - MongoDB and Mongoose
 - Zod request validation
 - JWT authentication with HTTP-only cookies
 - Groq (`llama-3.3-70b-versatile`) for analysis
 - Axios and Cheerio for public page extraction
-- Vitest and Supertest
+- Vitest, Supertest, Testing Library, and jsdom
 
 ## Local Setup
 
 Requirements: Node.js 20+ and a MongoDB instance.
 
+Install backend dependencies:
+
 ```bash
 cd backend
+npm ci
+```
+
+Install frontend dependencies:
+
+```bash
+cd frontend
 npm ci
 ```
 
@@ -41,11 +55,17 @@ REFRESH_TOKEN_EXPIRY=7d
 GROQ_API_KEY=replace-with-your-groq-api-key
 ```
 
-Never commit `.env` or place secrets directly in source files.
+Create `frontend/.env.local`:
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:7000
+```
+
+Never commit `.env`, `.env.local`, or place secrets directly in source files.
 
 ## Commands
 
-Run these commands from `backend/`:
+Run backend commands from `backend/`:
 
 ```bash
 npm run dev       # Run the API from TypeScript
@@ -54,7 +74,16 @@ npm run build     # Type-check and compile into dist/
 npm start         # Run the compiled API
 ```
 
-The default API address is `http://localhost:7000`.
+Run frontend commands from `frontend/`:
+
+```bash
+npm run dev       # Run the Next.js app locally
+npm test          # Run frontend component tests
+npm run build     # Build the production frontend
+npm start         # Serve the compiled frontend
+```
+
+The default API address is `http://localhost:7000`, and the default frontend address is `http://localhost:3000`.
 
 Deployment platforms can check `GET /api/health` to verify that the API process is running.
 
@@ -83,7 +112,7 @@ Login and store cookies:
 ```bash
 curl -c cookies.txt -X POST http://localhost:7000/api/auth/login \
   -H "Content-Type: application/json" \
-  -d '{"email":"demo@example.com","password":"secure123"}'
+  -d '{"username":"demo_user","password":"secure123"}'
 ```
 
 ### Analysis
@@ -127,15 +156,21 @@ Verdict bands are `safe` (0-30), `suspicious` (31-60), and `fake` (61-100).
 ## Project Structure
 
 ```text
+frontend/
+|-- src/app/        # Next.js routes
+|-- src/components/ # UI and feature components
+|-- src/lib/        # API client and shared helpers
+|-- src/test/       # Frontend test setup
+
 backend/src/
-├── controller/   # Request and response logic
-├── middleware/   # Authentication, validation, and rate limits
-├── model/        # Mongoose models
-├── routes/       # Express route definitions
-├── schemas/      # Zod request schemas
-├── test/         # Shared test setup
-├── types/        # Express type extensions
-└── utils/        # AI, URL parsing, and response helpers
+|-- controller/     # Request and response logic
+|-- middleware/     # Authentication, validation, and rate limits
+|-- model/          # Mongoose models
+|-- routes/         # Express route definitions
+|-- schemas/        # Zod request schemas
+|-- test/           # Shared test setup
+|-- types/          # Express type extensions
+|-- utils/          # AI, URL parsing, and response helpers
 ```
 
 ## Verification
@@ -143,12 +178,34 @@ backend/src/
 Before opening a pull request:
 
 ```bash
+cd backend
 npm test
 npm run build
 npm audit --omit=dev
+
+cd ../frontend
+npm test
+npm run build
 ```
 
-Tests cover input detection and validation, protected routes, refresh-token rotation, rate limiting, URL security, AI analysis persistence, and history ownership.
+Tests cover input detection and validation, protected routes, refresh-token rotation, rate limiting, URL security, AI analysis persistence, history ownership, and key frontend rendering behavior.
+
+Production verification completed:
+
+- Register, login, current user, and logout passed.
+- Render API health passed.
+- Vercel frontend returned `200 OK`.
+- CORS allowed the Vercel origin.
+- Temporary production smoke-test user was removed.
+
+## Screenshots
+
+Capture fresh screenshots before a public submission or portfolio handoff:
+
+- Home: <https://job-guard-sigma.vercel.app>
+- Login: <https://job-guard-sigma.vercel.app/login>
+- Dashboard: <https://job-guard-sigma.vercel.app/dashboard>
+- History: <https://job-guard-sigma.vercel.app/history>
 
 ## Deployment Notes
 
