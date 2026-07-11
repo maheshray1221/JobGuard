@@ -232,7 +232,7 @@ function HistoryCard({ record }: { record: HistoryRecord }) {
           }
           gradientTo="#22d3ee"
           gradientOpacity={0.05}
-        className="h-full rounded-3xl bg-white shadow-sm transition-shadow group-hover:shadow-xl dark:bg-slate-900"
+          className="h-full rounded-3xl bg-white shadow-sm transition-shadow group-hover:shadow-xl dark:bg-slate-900"
         >
           <div className="p-5 sm:p-6">
             <div className="flex items-start justify-between gap-4">

@@ -7,11 +7,21 @@ describe("API security behavior", () => {
     const response = await request(app).get("/api/health");
 
     expect(response.status).toBe(200);
+    expect(response.headers["x-request-id"]).toBeTruthy();
     expect(response.body).toMatchObject({
       success: true,
       data: { status: "ok" },
       msg: "JobGuard API is healthy",
     });
+  });
+
+  it("preserves a caller-provided request ID", async () => {
+    const response = await request(app)
+      .get("/api/health")
+      .set("X-Request-ID", "test-request-123");
+
+    expect(response.status).toBe(200);
+    expect(response.headers["x-request-id"]).toBe("test-request-123");
   });
 
   it("returns a JSON 401 for a protected endpoint", async () => {

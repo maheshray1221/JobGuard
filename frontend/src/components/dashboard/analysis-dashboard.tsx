@@ -178,7 +178,7 @@ export function AnalysisDashboard() {
                     </p>
                   ) : (
                     <p id="input-help" className="text-sm text-slate-500">
-                      {input.trim().length} characters · minimum 30
+                      {input.trim().length} characters - minimum 30
                     </p>
                   )}
                 </div>

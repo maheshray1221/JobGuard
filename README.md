@@ -104,7 +104,7 @@ Register:
 ```bash
 curl -X POST http://localhost:7000/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username":"demo_user","email":"demo@example.com","password":"secure123"}'
+  -d '{"username":"<username>","email":"<email>","password":"<password>"}'
 ```
 
 Login and store cookies:
@@ -112,7 +112,7 @@ Login and store cookies:
 ```bash
 curl -c cookies.txt -X POST http://localhost:7000/api/auth/login \
   -H "Content-Type: application/json" \
-  -d '{"username":"demo_user","password":"secure123"}'
+  -d '{"username":"<username>","password":"<password>"}'
 ```
 
 ### Analysis

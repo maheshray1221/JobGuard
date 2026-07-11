@@ -75,7 +75,8 @@ export function RegisterForm() {
         skipRefresh: true,
       });
       toast.success("Account created. You can now sign in.");
-      router.push("/login");
+      router.replace("/login");
+      router.refresh();
     } catch (error) {
       const message =
         error instanceof ApiClientError

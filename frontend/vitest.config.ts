@@ -14,5 +14,8 @@ export default defineConfig({
     setupFiles: ["./src/test/setup.ts"],
     clearMocks: true,
     exclude: [".next/**", "node_modules/**"],
+    pool: "threads",
+    fileParallelism: false,
+    maxWorkers: 1,
   },
 });

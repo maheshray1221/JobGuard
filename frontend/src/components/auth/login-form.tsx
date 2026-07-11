@@ -48,7 +48,7 @@ export function LoginForm() {
         skipRefresh: true,
       });
       toast.success("Welcome back");
-      router.push("/dashboard");
+      router.replace("/dashboard");
       router.refresh();
     } catch (error) {
       const message =

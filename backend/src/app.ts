@@ -7,6 +7,7 @@ import express, {
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import helmet from "helmet";
+import { requestLogger } from "./middleware/requestLogger.middleware.js";
 import ApiError from "./utils/apiError.js";
 
 const app: Application = express();
@@ -36,6 +37,7 @@ app.use(
 );
 
 app.use(helmet());
+app.use(requestLogger);
 app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
