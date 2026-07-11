@@ -200,12 +200,33 @@ Production verification completed:
 
 ## Screenshots
 
-Capture fresh screenshots before a public submission or portfolio handoff:
+Home:
 
-- Home: <https://job-guard-sigma.vercel.app>
-- Login: <https://job-guard-sigma.vercel.app/login>
-- Dashboard: <https://job-guard-sigma.vercel.app/dashboard>
-- History: <https://job-guard-sigma.vercel.app/history>
+![JobGuard home page](docs/screenshots/home.png)
+
+Login:
+
+![JobGuard login page](docs/screenshots/login.png)
+
+Register:
+
+![JobGuard register page](docs/screenshots/register.png)
+
+Dashboard:
+
+![JobGuard dashboard page](docs/screenshots/dashboard.png)
+
+Analysis result:
+
+![JobGuard analysis result](docs/screenshots/analysis-result.png)
+
+History:
+
+![JobGuard history page](docs/screenshots/history.png)
+
+History detail:
+
+![JobGuard history detail page](docs/screenshots/history-detail.png)
 
 ## Deployment Notes
 
